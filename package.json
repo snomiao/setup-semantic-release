@@ -33,7 +33,6 @@
   ],
   "scripts": {
     "build": "echo pass",
-    "build:js": "bun build . --outdir=dist",
     "prerelease": "bun run build && bun run test",
     "release": "bunx standard-version && git push --follow-tags && npm publish",
     "test": "echo pass",
