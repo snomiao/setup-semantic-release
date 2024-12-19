@@ -14,7 +14,9 @@
     "type": "git",
     "url": "git+https://github.com/snomiao/sno-setup-semantic-release.git"
   },
-  "bin": "./cli.ts",
+  "bin": {
+    "setup-semantic-release": "cli.ts"
+  },
   "license": "MIT",
   "author": "snomiao <snomiao@gmail.com>",
   "type": "module",
