@@ -15,5 +15,7 @@ jobs:
       - run: bun run build
       - run: npx semantic-release
         env:
+          # reminder to setup read/write permission for this token
+          # here: REPO_URL/settings/actions
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
