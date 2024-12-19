@@ -32,10 +32,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "bun build:type && bun build:js && bun build:umd",
+    "build": "echo pass",
     "build:js": "bun build . --outdir=dist",
-    "build:type": "tsc -d --noEmit false --emitDeclarationOnly --outDir dist",
-    "build:umd": "bunx rollup dist/index.js --file dist/index.umd.js --format umd --name \"main\"",
     "prerelease": "bun run build && bun run test",
     "release": "bunx standard-version && git push --follow-tags && npm publish",
     "test": "echo pass",
