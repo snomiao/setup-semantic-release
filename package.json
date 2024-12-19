@@ -29,7 +29,8 @@
   "types": "./index.ts",
   "files": [
     "*.ts",
-    "dist"
+    "dist",
+    ".github/workflows"
   ],
   "scripts": {
     "build": "echo pass",
