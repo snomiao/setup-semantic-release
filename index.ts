@@ -43,7 +43,7 @@ async function configGithubAction() {
   if (await Bun.file(actionPath).exists()) {
     console.log("github action already exists, skipping: " + actionPath);
   } else {
-    await Bun.write(actionPath, actionDefaultContent);
+    await Bun.write(actionPath, actionDefaultContent, {createPath: true});
   }
 
   // setup secrets
