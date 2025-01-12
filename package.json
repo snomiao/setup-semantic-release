@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "setup semantic-release for your project",
   "keywords": [],
   "homepage": "https://github.com/snomiao/sno-setup-semantic-release#readme",
