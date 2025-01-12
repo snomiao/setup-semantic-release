@@ -30,7 +30,7 @@
   "files": [
     "*.ts",
     "dist",
-    ".github/workflows"
+    ".github/workflows/*.yml"
   ],
   "scripts": {
     "build": "echo pass",
