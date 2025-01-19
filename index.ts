@@ -55,5 +55,5 @@ async function configGithubAction() {
 }
 async function gitCommit() {
   await Bun.$`git add .`;
-  await Bun.$`git commit -m "chore: setup semantic release"`;
+  await Bun.$`git commit -am "chore: setup semantic release"`;
 }
