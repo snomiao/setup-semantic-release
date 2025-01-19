@@ -47,14 +47,10 @@ async function configGithubAction() {
   }
 
   // setup secrets
-  if (!process.env.GH_TOKEN) throw new Error("GH_TOKEN is not set");
-  if (!process.env.NPM_TOKEN) throw new Error("NPM_TOKEN is not set");
-  console.log(
-    await Bun.$`gh secret set GH_TOKEN -b ${process.env.GH_TOKEN}`.text()
-  );
-  console.log(
-    await Bun.$`gh secret set NPM_TOKEN -b ${process.env.NPM_TOKEN}`.text()
-  );
+  // if (!process.env.GH_TOKEN) throw new Error("GH_TOKEN is not set");
+  // if (!process.env.NPM_TOKEN) throw new Error("NPM_TOKEN is not set");
+  // await Bun.$`gh secret set GH_TOKEN -b ${process.env.GH_TOKEN}`.text()
+  // await Bun.$`gh secret set NPM_TOKEN -b ${process.env.NPM_TOKEN}`.text()
 }
 async function gitCommit() {
   //
