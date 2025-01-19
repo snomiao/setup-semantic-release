@@ -29,7 +29,7 @@ async function configHusky() {
   //   await Bun.$`echo 'bunx commitlint --edit $1' > .husky/commit-msg`;
 }
 async function configCommitLint() {
-    // WIP
+  // WIP
   // await Bun.$`bun i -D @commitlint/config-conventional @commitlint/cli`;
 }
 async function configSemanticRelease() {
@@ -43,7 +43,7 @@ async function configGithubAction() {
   if (await Bun.file(actionPath).exists()) {
     console.log("github action already exists, skipping: " + actionPath);
   } else {
-    await Bun.write(actionPath, actionDefaultContent, {createPath: true});
+    await Bun.write(actionPath, actionDefaultContent, { createPath: true });
   }
 
   // setup secrets
@@ -51,9 +51,9 @@ async function configGithubAction() {
   // if (!process.env.NPM_TOKEN) throw new Error("NPM_TOKEN is not set");
   // await Bun.$`gh secret set GH_TOKEN -b ${process.env.GH_TOKEN}`.text()
   // await Bun.$`gh secret set NPM_TOKEN -b ${process.env.NPM_TOKEN}`.text()
+  console.log('please dont forget setup NPM_TOKEN on repo secrets')
 }
 async function gitCommit() {
-  //
-  //   await Bun.$`git add .`;
-  //   await Bun.$`git commit -m "chore: setup semantic release"`;
+  await Bun.$`git add .`;
+  await Bun.$`git commit -m "chore: setup semantic release"`;
 }
