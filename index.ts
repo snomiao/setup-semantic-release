@@ -54,6 +54,10 @@ async function configGithubActionSecrets() {
     await Bun.$`gh secret set GH_TOKEN -b ${process.env.GH_TOKEN}`;
     await Bun.$`gh secret set NPM_TOKEN -b ${process.env.NPM_TOKEN}`;
   } else {
+    console.log(`
+gh secret set GH_TOKEN -b $GH_TOKEN
+gh secret set NPM_TOKEN -b $NPM_TOKEN
+`);
     console.log("please dont forget setup NPM_TOKEN on repo secrets");
   }
 }
