@@ -49,16 +49,14 @@ async function configGithubAction() {
   await configGithubActionSecrets().catch(() => null);
 }
 async function configGithubActionSecrets() {
-  if (process.env.GH_TOKEN && process.env.NPM_TOKEN) {
-    await Bun.$`apt install gh`;
-    await Bun.$`gh secret set GH_TOKEN -b ${process.env.GH_TOKEN}`;
+  if (process.env.NPM_TOKEN) {
+    await Bun.$`gh --version || curl -fSSL get-gh.vercel.app | bash`;
     await Bun.$`gh secret set NPM_TOKEN -b ${process.env.NPM_TOKEN}`;
   } else {
     console.log(`
-gh secret set GH_TOKEN -b $GH_TOKEN
 gh secret set NPM_TOKEN -b $NPM_TOKEN
 `);
-    console.log("please dont forget setup NPM_TOKEN on repo secrets");
+    console.log("please don't forget setup NPM_TOKEN on repo secrets");
   }
 }
 
