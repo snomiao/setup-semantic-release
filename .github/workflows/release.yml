@@ -1,24 +1,35 @@
 on:
+  pull_request:
+    branches:
+      - main
   push:
+    tags:
+      - 'v*.*.*'
+    branches:
+      - [main, beta]
+
 permissions:
+  id-token: write
   contents: write
   issues: write
+
 jobs:
-  semantic-release:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with:
           node-version: latest
         #[semantic-release]: node version >=20.8.1 is required. Found v18.20.5.
       - uses: oven-sh/setup-bun@v2
       - run: bun i
-      - run: bun run test
       - run: bun run build
-      - run: npx semantic-release
+      - run: bun run test
+      
+      - run: bunx semantic-release
+        if: github.event_name == 'push'
         env:
           # reminder to setup read/write permission for this token
           # here: REPO_URL/settings/actions
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

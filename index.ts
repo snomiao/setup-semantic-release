@@ -1,3 +1,11 @@
+import path from "path";
+import { config } from "process";
+
+const configPath = path.resolve("~/.config/setup-semantic-release.json");
+type Config = {
+  NPM_TOKEN: string;
+};
+
 if (import.meta.main) {
   await setupSemanticRelease();
 }
@@ -5,7 +13,6 @@ if (import.meta.main) {
 export default async function setupSemanticRelease() {
   await checkPwdIsGitRoot();
   await checkGitClean();
-  await configHusky();
   await configCommitLint();
   await configSemanticRelease();
   await configGithubAction();
@@ -23,20 +30,12 @@ async function checkGitClean() {
     throw new Error("Git worktree is not clean");
   }
 }
-async function configHusky() {
-  await Bun.$`bun i husky -D`;
-  await Bun.$`bunx husky init`;
-  //   await Bun.$`echo 'bunx commitlint --edit $1' > .husky/commit-msg`;
-}
-async function configCommitLint() {
-  // WIP
-  // await Bun.$`bun i -D @commitlint/config-conventional @commitlint/cli`;
-}
+
 async function configSemanticRelease() {
   await Bun.$`bun i -D semantic-release`;
 }
 async function configGithubAction() {
-  const actionPath = ".github/workflows/semantic-release.yml";
+  const actionPath = ".github/workflows/release.yml";
   const actionDefaultContent = await Bun.file(
     import.meta.dir + "/" + actionPath
   ).text();
@@ -45,22 +44,43 @@ async function configGithubAction() {
   } else {
     await Bun.write(actionPath, actionDefaultContent, { createPath: true });
   }
-
-  await configGithubActionSecrets().catch(() => null);
 }
-async function configGithubActionSecrets() {
-  if (process.env.NPM_TOKEN) {
-    await Bun.$`gh --version || curl -fSSL get-gh.vercel.app | bash`;
-    await Bun.$`gh secret set NPM_TOKEN -b ${process.env.NPM_TOKEN}`;
-  } else {
-    console.log(`
-gh secret set NPM_TOKEN -b $NPM_TOKEN
-`);
-    console.log("please don't forget setup NPM_TOKEN on repo secrets");
-  }
-}
-
 async function gitCommit() {
   await Bun.$`git add .`;
   await Bun.$`git commit -am "chore: setup semantic release"`;
+}
+
+async function prompt(question: string) {
+  // use nodejs readline to prompt user for input
+  const readline = await import("readline");
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise<string>((resolve) => {
+    rl.question(question, (answer) => {
+      rl.close();
+      resolve(answer);
+    });
+  });
+}
+/**
+ * Sync configuration from multiple sources.
+ * 
+ * value prio
+ * 1. cmd args
+ * 2. process.env
+ * 3. config file
+ * 4. prompt user (will save to config file if provided)
+ */
+async function syncConfig(configPath = path.resolve("~/.config/setup-semantic-release.json")): Promise<Config> {
+
+  const config: Config = {
+    NPM_TOKEN: process.env.NPM_TOKEN || await prompt("Please enter your NPM_TOKEN for semantic-release (leave empty to skip): "),
+  };
+  await Bun.write(configPath, JSON.stringify(config, null, 2), {
+    createPath: true,
+  });
+  return config;
 }
