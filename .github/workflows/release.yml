@@ -26,10 +26,9 @@ jobs:
       - run: bun i
       - run: bun run build
       - run: bun run test
-      
-      - run: bunx semantic-release
-        if: github.event_name == 'push'
+
+      - run: bunx standard-version
+      - run: git push --follow-tags origin main
         env:
-          # reminder to setup read/write permission for this token
-          # here: REPO_URL/settings/actions
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm publish
