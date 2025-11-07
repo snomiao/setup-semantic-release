@@ -27,8 +27,12 @@ jobs:
       - run: bun run build
       - run: bun run test
 
-      - run: bunx standard-version
-      - run: git push --follow-tags origin main
+
+      # - run: bunx standard-version
+      # - run: git push --follow-tags origin main
+      # - run: npm publish
+
+      - run: bunx semantic-release
+        if: github.event_name == 'push'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: npm publish
