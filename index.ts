@@ -13,7 +13,6 @@ if (import.meta.main) {
 export default async function setupSemanticRelease() {
   await checkPwdIsGitRoot();
   await checkGitClean();
-  await configCommitLint();
   await configSemanticRelease();
   await configGithubAction();
   await gitCommit();
