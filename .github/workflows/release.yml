@@ -1,3 +1,12 @@
+# Release workflow
+
+# check https://www.npmjs.com/package/[package-name]/access for OIDC setup
+# 1. repo = this repo
+# 2. package-name = package to publish
+
+name: Release
+description: "Release workflow for publishing package"
+
 on:
   pull_request:
     branches:
@@ -10,9 +19,9 @@ on:
       - beta
 
 permissions:
-  id-token: write
-  contents: write
-  issues: write
+  id-token: write # required for OIDC
+  contents: write # read and write access to repository contents
+  issues: write  
 
 jobs:
   build:
