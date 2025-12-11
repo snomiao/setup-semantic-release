@@ -28,10 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
-        with:
-          node-version: latest
-        #[semantic-release]: node version >=20.8.1 is required. Found v18.20.5.
+      - uses: actions/setup-node@v6
       - uses: oven-sh/setup-bun@v2
       - run: bun i
       - run: bun run build
