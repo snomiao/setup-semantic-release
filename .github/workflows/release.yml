@@ -6,7 +6,8 @@ on:
     tags:
       - 'v*.*.*'
     branches:
-      - [main, beta]
+      - main
+      - beta
 
 permissions:
   id-token: write
