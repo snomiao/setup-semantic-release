@@ -16,6 +16,14 @@ export default async function setupSemanticRelease() {
   await configSemanticRelease();
   await configGithubAction();
   await gitCommit();
+
+  console.log("\n=== Setup Complete ===");
+  console.log("Don't forget to configure OIDC for NPM publishing!");
+  console.log("Visit: https://www.npmjs.com/package/@snomiao/setup-semantic-release/access");
+  console.log("Steps:");
+  console.log("  1. Set repo = your repository");
+  console.log("  2. Set package-name = your package name");
+  console.log("=====================\n");
 }
 async function checkPwdIsGitRoot() {
   if (
