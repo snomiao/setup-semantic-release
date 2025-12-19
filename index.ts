@@ -17,12 +17,22 @@ export default async function setupSemanticRelease() {
   await configGithubAction();
   await gitCommit();
 
+  // Fetch package name from package.json
+  const packageJson = await Bun.file("package.json").json();
+  const packagename = packageJson.name;
+
+  // Fetch repo info from git remote
+  const remoteUrl = (await Bun.$`git remote get-url origin`.text()).trim();
+  const repoMatch = remoteUrl.match(/github\.com[:/](.+?)\/(.+?)(\.git)?$/);
+  const repoOwner = repoMatch?.[1] || "your-username";
+  const repoName = repoMatch?.[2] || "your-repo";
+
   console.log("\n=== Setup Complete ===");
   console.log("Don't forget to configure OIDC for NPM publishing!");
-  console.log("Visit: https://www.npmjs.com/package/@snomiao/setup-semantic-release/access");
+  console.log(`Visit: https://www.npmjs.com/package/${packagename}/access`);
   console.log("Steps:");
-  console.log("  1. Set repo = your repository");
-  console.log("  2. Set package-name = your package name");
+  console.log(`  1. Set repo = ${repoOwner}/${repoName}`);
+  console.log("  2. Set workflow name = release.yml");
   console.log("=====================\n");
 }
 async function checkPwdIsGitRoot() {
@@ -84,7 +94,7 @@ async function prompt(question: string) {
 async function syncConfig(configPath = path.resolve("~/.config/setup-semantic-release.json")): Promise<Config> {
 
   const config: Config = {
-    NPM_TOKEN: process.env.NPM_TOKEN || await prompt("Please enter your NPM_TOKEN for semantic-release (leave empty to skip): "),
+    NPM_TOKEN: process.env.NPM_TOKEN || (await prompt("Please enter your NPM_TOKEN for semantic-release (leave empty to skip): ")),
   };
   await Bun.write(configPath, JSON.stringify(config, null, 2), {
     createPath: true,
