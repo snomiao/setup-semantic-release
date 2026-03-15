@@ -6,8 +6,8 @@
     "name": "snomiao",
     "email": "snomiao@gmail.com"
   },
-  "homepage": "https://github.com/snomiao/sno-setup-semantic-release#readme",
-  "repository": "https://github.com/snomiao/sno-setup-semantic-release",
+  "homepage": "https://github.com/snomiao/setup-semantic-release#readme",
+  "repository": "https://github.com/snomiao/setup-semantic-release",
   "license": "MIT",
   "keywords": ["semantic-release", "versioning", "npm", "ci-cd", "github-actions"]
 }

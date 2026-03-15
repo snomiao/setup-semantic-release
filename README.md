@@ -3,7 +3,7 @@
 A tool to automatically set up semantic-release for your JavaScript/TypeScript projects.
 
 [![npm version](https://badge.fury.io/js/@snomiao%2Fsetup-semantic-release.svg)](https://www.npmjs.com/package/@snomiao/setup-semantic-release)
-[![license](https://img.shields.io/npm/l/@snomiao/setup-semantic-release)](https://github.com/snomiao/sno-setup-semantic-release/blob/main/LICENSE)
+[![license](https://img.shields.io/npm/l/@snomiao/setup-semantic-release)](https://github.com/snomiao/setup-semantic-release/blob/main/LICENSE)
 
 ## Features
 
