@@ -49,6 +49,26 @@ When you run the setup command, it will:
 
 If you have an `NPM_TOKEN` environment variable set, it will automatically configure it as a GitHub secret for your repository. Otherwise, it will provide instructions on how to set it up manually.
 
+## Claude Code Skill
+
+This package is also available as a [Claude Code](https://claude.ai/claude-code) skill/plugin. AI agents can use it to set up semantic-release in your project conversationally.
+
+### Install
+
+```bash
+bunx skills add snomiao/setup-semantic-release
+```
+
+### Use
+
+Once installed, invoke it in Claude Code:
+
+```
+/setup-semantic-release
+```
+
+Or just ask Claude: *"Set up semantic-release for this project"* — the skill triggers automatically based on context.
+
 ## Requirements
 
 - [Git](https://git-scm.com/)

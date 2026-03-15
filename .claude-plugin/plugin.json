@@ -1,0 +1,13 @@
+{
+  "name": "setup-semantic-release",
+  "description": "Set up semantic-release for automated versioning and NPM publishing with GitHub Actions OIDC",
+  "version": "1.0.0",
+  "author": {
+    "name": "snomiao",
+    "email": "snomiao@gmail.com"
+  },
+  "homepage": "https://github.com/snomiao/sno-setup-semantic-release#readme",
+  "repository": "https://github.com/snomiao/sno-setup-semantic-release",
+  "license": "MIT",
+  "keywords": ["semantic-release", "versioning", "npm", "ci-cd", "github-actions"]
+}

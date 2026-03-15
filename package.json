@@ -30,7 +30,9 @@
   "files": [
     "*.ts",
     "dist",
-    ".github/workflows/*.yml"
+    ".github/workflows/*.yml",
+    ".claude-plugin",
+    "skills"
   ],
   "scripts": {
     "build": "echo pass",
